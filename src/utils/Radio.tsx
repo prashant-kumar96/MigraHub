@@ -3,11 +3,13 @@ interface props {
   text: string;
   onChange: any;
   name: string;
+  checked: boolean;
 }
-const Radio: React.FC<props> = ({ text, onChange, name }) => {
+const Radio: React.FC<props> = ({ text, onChange, name, checked }) => {
   return (
     <div className="flex items-center">
       <input
+        checked={checked}
         id="default-radio-1"
         type="radio"
         value=""

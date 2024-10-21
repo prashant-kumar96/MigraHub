@@ -5,36 +5,35 @@ import StepsModal from "./StepsModal";
 const Banner = () => {
   const [citizenshipCountry, setCitizenshipCountry] = useState("");
   const [destinationCountry, setDestinationCountry] = useState("");
-  const [shouldStartjourneyShow, setShouldStartjourneyShow] = useState(false)
-  const labelCountries = ["IN","fi", "GB", "IE", "IT", "NL", "SE", "CA"]
-  const [labelCountriesData, setLabelCountriesData] = useState(labelCountries)
+  const [shouldStartjourneyShow, setShouldStartjourneyShow] = useState(false);
+  const labelCountries = ["IN", "fi", "GB", "IE", "IT", "NL", "SE", "CA"];
+  const [labelCountriesData, setLabelCountriesData] = useState(labelCountries);
 
-  const onSelectCitizenShipCountry = (code:string) => {
-    setCitizenshipCountry(code)
-    const index = labelCountries.indexOf(code)
+  const onSelectCitizenShipCountry = (code: string) => {
+    setCitizenshipCountry(code);
+    const index = labelCountries.indexOf(code);
     // console.log(index)
     // if(index>-1){
     //   labelCountries.splice(index,1)
     //   console.log(labelCountries)
     //   setLabelCountriesData(labelCountries)
     // }
-  }
+  };
 
-  const onSelectDestinationCountry = (code:string) => {
+  const onSelectDestinationCountry = (code: string) => {
     setDestinationCountry(code);
     // const index = labelCountries.indexOf(code)
     // if(index>-1){
     //   labelCountries.splice(index,1)
     //   setLabelCountriesData(labelCountries)
     // }
-  }
-  
-  const handleStartjourney = () =>{
-    setShouldStartjourneyShow(true)
-  }
+  };
+
+  const handleStartjourney = () => {
+    setShouldStartjourneyShow(true);
+  };
   console.log("citizenshipCountry", citizenshipCountry);
 
-  
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
@@ -73,7 +72,7 @@ const Banner = () => {
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
               From which country are you starting and going to which country
             </h2>
-            <form className="mt-8 space-y-6" action="#">
+            <div className="mt-8 space-y-6">
               <div>
                 <label
                   htmlFor="countries"
@@ -84,7 +83,7 @@ const Banner = () => {
                 <ReactFlagsSelect
                   selected={citizenshipCountry}
                   onSelect={onSelectCitizenShipCountry}
-                   className="bg-white text-black"
+                  className="bg-white text-black"
                   countries={labelCountriesData}
                   searchable
                   /*showSelectedLabel={showSelectedLabel}
@@ -109,7 +108,7 @@ const Banner = () => {
                 <ReactFlagsSelect
                   selected={destinationCountry}
                   onSelect={onSelectDestinationCountry}
-                   className="bg-white text-black"
+                  className="bg-white text-black"
                   countries={labelCountriesData}
                   searchable
                   /*showSelectedLabel={showSelectedLabel}
@@ -125,7 +124,7 @@ const Banner = () => {
                 />
               </div>
 
-              <button               
+              <button
                 className="w-full px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 onClick={handleStartjourney}
               >
@@ -137,11 +136,18 @@ const Banner = () => {
                   Create account
                 </a>
               </div> */}
-            </form>
+            </div>
           </div>
         </div>
       </div>
-      {shouldStartjourneyShow && <StepsModal setShouldStartjourneyShow={setShouldStartjourneyShow} citizenshipCountry={citizenshipCountry} setCitizenshipCountry={setCitizenshipCountry} onSelectCitizenShipCountry={onSelectCitizenShipCountry}/>}
+      {shouldStartjourneyShow && (
+        <StepsModal
+          setShouldStartjourneyShow={setShouldStartjourneyShow}
+          citizenshipCountry={citizenshipCountry}
+          setCitizenshipCountry={setCitizenshipCountry}
+          onSelectCitizenShipCountry={onSelectCitizenShipCountry}
+        />
+      )}
     </section>
   );
 };

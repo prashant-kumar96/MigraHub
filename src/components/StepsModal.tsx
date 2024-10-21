@@ -34,6 +34,8 @@ const StepsModal: React.FC<Props> = ({
     areYouApplyingFromIndia: false,
     handleSelectFromWhichCountry: "",
     haveSpouseOrProperty: false,
+    travelledInternationallyAndReturnedHome: false,
+    deniedVisaToUs: false,
   });
 
   console.log("step", step);
@@ -47,8 +49,8 @@ const StepsModal: React.FC<Props> = ({
   const handleBackButtonClick = () => {
     if (progressBarpercentage != 0) {
       setProgressBarPercentage((prev) => prev - 10);
+      setStep((prev) => prev - 1);
     }
-    setStep((prev) => prev - 1);
   };
 
   const handleSelectCitizenShipCountry = (code: string) => {
@@ -150,7 +152,11 @@ const StepsModal: React.FC<Props> = ({
                 <div className="bg-gray-600 m-4">
                   {showRiskDecreased && (
                     <div className="p-4 md:p-5 space-y-4">
-                      <Checkbox text="Risk Decreased" textColor="white" />
+                      <Checkbox
+                        text="Risk Decreased"
+                        textColor="white"
+                        checked={showRiskDecreased}
+                      />
                       <p className="text-sm"> {ModalData[step].firstLine}</p>
                       <p className="text-sm">{ModalData[step].secondLine}</p>
                     </div>
@@ -173,11 +179,16 @@ const StepsModal: React.FC<Props> = ({
                       text="Yes"
                       onChange={() => handleYes("areYouApplyingFromIndia")}
                       name="areYouApplyingFromIndia"
+                      checked={data.areYouApplyingFromIndia}
                     />
                   </div>
                   {data.areYouApplyingFromIndia && (
                     <div className="p-4 md:p-5 space-y-4 bg-gray-600">
-                      <Checkbox text="Risk Decreased" textColor="white" />
+                      <Checkbox
+                        text="Risk Decreased"
+                        textColor="white"
+                        checked={data.areYouApplyingFromIndia}
+                      />
                       <p className="text-sm"> {ModalData[step].firstLine}</p>
 
                       <p className="text-sm">{ModalData[step].secondLine}</p>
@@ -198,6 +209,7 @@ const StepsModal: React.FC<Props> = ({
                       textColor="white"
                       onChange={() => handleNo("areYouApplyingFromIndia")}
                       name="areYouApplyingFromIndia"
+                      checked={!data.areYouApplyingFromIndia}
                     />
                   </div>
                   {!data.areYouApplyingFromIndia && (
@@ -233,7 +245,11 @@ const StepsModal: React.FC<Props> = ({
         disabled={disabled} */
                       />
                       <div className="p-4 md:p-5 space-y-4 bg-gray-600">
-                        <Checkbox text="Risk Increased" textColor="white" />
+                        <Checkbox
+                          text="Risk Increased"
+                          textColor="white"
+                          checked={!data.areYouApplyingFromIndia}
+                        />
                         <p className="text-sm">
                           {" "}
                           {ModalData[step].firstLineForNo}
@@ -258,11 +274,16 @@ const StepsModal: React.FC<Props> = ({
                       textColor="white"
                       onChange={() => handleYes("haveSpouseOrProperty")}
                       name="haveSpouseOrProperty"
+                      checked={data.haveSpouseOrProperty}
                     />
                   </div>
                   {data.haveSpouseOrProperty && (
                     <div className="p-4 md:p-5 space-y-4 bg-gray-600">
-                      <Checkbox text="Risk Decreased" textColor="white" />
+                      <Checkbox
+                        text="Risk Decreased"
+                        textColor="white"
+                        checked={data.haveSpouseOrProperty}
+                      />
                       <p className="text-sm"> {ModalData[step].lineForYes}</p>
                     </div>
                   )}
@@ -281,15 +302,152 @@ const StepsModal: React.FC<Props> = ({
                       textColor="white"
                       onChange={() => handleNo("haveSpouseOrProperty")}
                       name="haveSpouseOrProperty"
+                      checked={!data.haveSpouseOrProperty}
                     />
                   </div>
                   {!data.haveSpouseOrProperty && (
                     <>
                       <div className="p-4 md:p-5 space-y-4 bg-gray-600">
-                        <Checkbox text="Risk Increased" textColor="white" />
+                        <Checkbox
+                          text="Risk Increased"
+                          textColor="white"
+                          checked={!data.haveSpouseOrProperty}
+                        />
 
-                        <p className="text-sm">{ModalData[step].firstlineForNo}</p>
-                        <p className="text-sm">{ModalData[step].secondlineForNo}</p>
+                        <p className="text-sm">
+                          {ModalData[step].firstlineForNo}
+                        </p>
+                        <p className="text-sm">
+                          {ModalData[step].secondlineForNo}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </>
+            )}
+            {step === 3 && (
+              <>
+                <div className={`m-4`}>
+                  <div className="p-2 px-5 space-y-4 border-b-2 py-4 bg-red-100">
+                    <Radio
+                      text="Yes"
+                      textColor="white"
+                      onChange={() =>
+                        handleYes("travelledInternationallyAndReturnedHome")
+                      }
+                      name="travelledInternationallyAndReturnedHome"
+                      checked={data.travelledInternationallyAndReturnedHome}
+                    />
+                  </div>
+                  {data.travelledInternationallyAndReturnedHome && (
+                    <div className="p-4 md:p-5 space-y-4 bg-gray-600">
+                      <Checkbox
+                        text="Risk Decreased"
+                        textColor="white"
+                        checked={data.travelledInternationallyAndReturnedHome}
+                      />
+                      <p className="text-sm"> {ModalData[step].lineForYes}</p>
+                    </div>
+                  )}
+                </div>
+
+                <div
+                  className={`${
+                    !data.travelledInternationallyAndReturnedHome
+                      ? "border-2 border-red-400"
+                      : ""
+                  } m-4`}
+                >
+                  <div className="p-2 px-5 space-y-4 border-b-2 py-4 bg-red-100">
+                    <Radio
+                      text="No"
+                      textColor="white"
+                      onChange={() =>
+                        handleNo("travelledInternationallyAndReturnedHome")
+                      }
+                      name="travelledInternationallyAndReturnedHome"
+                      checked={!data.travelledInternationallyAndReturnedHome}
+                    />
+                  </div>
+                  {!data.travelledInternationallyAndReturnedHome && (
+                    <>
+                      <div className="p-4 md:p-5 space-y-4 bg-gray-600">
+                        <Checkbox
+                          text="Risk Increased"
+                          textColor="white"
+                          checked={
+                            !data.travelledInternationallyAndReturnedHome
+                          }
+                        />
+
+                        <p className="text-sm">
+                          {ModalData[step].firstlineForNo}
+                        </p>
+                        <p className="text-sm">
+                          {ModalData[step].secondlineForNo}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </>
+            )}
+
+            {step === 4 && (
+              <>
+                <div className={`m-4`}>
+                  <div className="p-2 px-5 space-y-4 border-b-2 py-4 bg-red-100">
+                    <Radio
+                      text="Yes"
+                      textColor="white"
+                      onChange={() => handleYes("deniedVisaToUs")}
+                      name="deniedVisaToUs"
+                      checked={data.deniedVisaToUs}
+                    />
+                  </div>
+                  {data.deniedVisaToUs && (
+                    <div className="p-4 md:p-5 space-y-4 bg-gray-600">
+                      <Checkbox
+                        text="Risk Decreased"
+                        textColor="white"
+                        checked={data.deniedVisaToUs}
+                      />
+                      <p className="text-sm">
+                        {" "}
+                        {ModalData[step].firstlineForYes}
+                      </p>
+                      <p className="text-sm">
+                        {ModalData[step].secondlineForYes}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <div
+                  className={`${
+                    !data.deniedVisaToUs ? "border-2 border-red-400" : ""
+                  } m-4`}
+                >
+                  <div className="p-2 px-5 space-y-4 border-b-2 py-4 bg-red-100">
+                    <Radio
+                      text="No"
+                      textColor="white"
+                      onChange={() => handleNo("deniedVisaToUs")}
+                      name="deniedVisaToUs"
+                      checked={!data.deniedVisaToUs}
+                    />
+                  </div>
+                  {!data.deniedVisaToUs && (
+                    <>
+                      <div className="p-4 md:p-5 space-y-4 bg-gray-600">
+                        <Checkbox
+                          text="Risk Increased"
+                          textColor="white"
+                          checked={!data.deniedVisaToUs}
+                        />
+
+                        <p className="text-sm">{ModalData[step].lineForNo}</p>
                       </div>
                     </>
                   )}

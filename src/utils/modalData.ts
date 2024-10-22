@@ -6,7 +6,7 @@ const ModalData = [
     secondLine: "Source: U.S. Department of State denial rate data",
   },
   {
-    question: "Are you applying from India",
+    question: "Are you applying from",
     firstLine:
       "It's easier to prove you'll return home and not overstay your visa if you already live there",
     secondLine:
@@ -49,6 +49,11 @@ const ModalData = [
     lineForNo:
       "Good to know! Having o recent denials makes your case much stronger",
   },
+  {
+    question:
+      "Create an account to see your travel visa denial risk and how we will lower it",
+  },
 ];
 
-export { ModalData };
+const countriesCodes = ["IN", "fi", "GB", "IE", "IT", "NL", "SE", "CA","US"]
+export { ModalData , countriesCodes };

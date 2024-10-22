@@ -4,8 +4,9 @@ interface props {
   onChange: any;
   name: string;
   checked: boolean;
+  textColor?: string
 }
-const Radio: React.FC<props> = ({ text, onChange, name, checked }) => {
+const Radio: React.FC<props> = ({ text, onChange, name, checked,textColor  }) => {
   return (
     <div className="flex items-center">
       <input
@@ -19,7 +20,7 @@ const Radio: React.FC<props> = ({ text, onChange, name, checked }) => {
       />
       <label
         htmlFor="default-radio-1"
-        className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-800"
       >
         {text}
       </label>

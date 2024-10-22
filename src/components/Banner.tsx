@@ -1,49 +1,75 @@
 import React, { useState } from "react";
 import ReactFlagsSelect from "react-flags-select";
 import StepsModal from "./StepsModal";
+import { countriesCodes } from "@/utils/modalData";
 
 const Banner = () => {
   const [citizenshipCountry, setCitizenshipCountry] = useState("");
   const [destinationCountry, setDestinationCountry] = useState("");
   const [shouldStartjourneyShow, setShouldStartjourneyShow] = useState(false);
-  const labelCountries = ["IN", "fi", "GB", "IE", "IT", "NL", "SE", "CA"];
-  const [labelCountriesData, setLabelCountriesData] = useState(labelCountries);
+  const [citizenshipCountryCodes, setCitizenshipCountryCodes] = useState(countriesCodes);
+  const [destinationCountryCodes, setDestinationCountryCodes] = useState(countriesCodes);
+  const [error, setError] = useState({
+    citizenshipCountryError:"",
+    destinationCountryError:"",
+  })
+
+  console.log("error",error)
 
   const onSelectCitizenShipCountry = (code: string) => {
+    console.log("This is run")
+    setError((prev)=>({...prev,
+      citizenshipCountryError:""
+    }))
     setCitizenshipCountry(code);
-    const index = labelCountries.indexOf(code);
-    // console.log(index)
-    // if(index>-1){
-    //   labelCountries.splice(index,1)
-    //   console.log(labelCountries)
-    //   setLabelCountriesData(labelCountries)
-    // }
+    let temp = [...countriesCodes]
+    const index = destinationCountryCodes.indexOf(code);
+    if(index>-1){
+      temp.splice(index,1)
+      setDestinationCountryCodes(temp)
+    }
   };
 
   const onSelectDestinationCountry = (code: string) => {
+    setError((prev)=>({...prev,
+      destinationCountryError:""
+    }))
     setDestinationCountry(code);
-    // const index = labelCountries.indexOf(code)
-    // if(index>-1){
-    //   labelCountries.splice(index,1)
-    //   setLabelCountriesData(labelCountries)
-    // }
+    let temp = [...countriesCodes]
+    const index = citizenshipCountryCodes.indexOf(code);
+    if(index>-1){
+      temp.splice(index,1)
+      setCitizenshipCountryCodes(temp)
+    }
   };
 
   const handleStartjourney = () => {
-    setShouldStartjourneyShow(true);
+    console.log("citizenshipCountry",citizenshipCountry)
+    console.log("destinationCountry",destinationCountry)
+    if(!citizenshipCountry){
+      console.log("we are here @@@");
+      setError((prev)=>({...prev, citizenshipCountryError:"Please select a citizenship country"}))
+    }
+    if(!destinationCountry){
+      setError((prev)=>({...prev, destinationCountryError:"Please select a destination country"}))
+    }
+    if(citizenshipCountry && destinationCountry){
+      setError((prev)=>({...prev, destinationCountryError:"", citizenshipCountryError:""}))
+      setShouldStartjourneyShow(true);
+    }
   };
   console.log("citizenshipCountry", citizenshipCountry);
 
   return (
+
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
         <div className="flex flex-col justify-center">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            We invest in the world’s potential
+          MigraHub: Your Gateway to a Simplified Visitor Visa Journey
           </h1>
-          <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-            Here at Flowbite we focus on markets where technology, innovation,
-            and capital can unlock long-term value and drive economic growth.
+          <p className="mb-6 text-base font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+            Navigate the complexities of Visitor visa process with ease
           </p>
           <a
             href="#"
@@ -84,7 +110,7 @@ const Banner = () => {
                   selected={citizenshipCountry}
                   onSelect={onSelectCitizenShipCountry}
                   className="bg-white text-black"
-                  countries={labelCountriesData}
+                  countries={citizenshipCountryCodes}
                   searchable
                   /*showSelectedLabel={showSelectedLabel}
         selectedSize={selectedSize}
@@ -97,6 +123,7 @@ const Banner = () => {
         fullWidth={fullWidth}
         disabled={disabled} */
                 />
+               <p className="text-red-500 text-sm"> {error.citizenshipCountryError}</p>
               </div>
               <div>
                 <label
@@ -109,7 +136,7 @@ const Banner = () => {
                   selected={destinationCountry}
                   onSelect={onSelectDestinationCountry}
                   className="bg-white text-black"
-                  countries={labelCountriesData}
+                  countries={destinationCountryCodes}
                   searchable
                   /*showSelectedLabel={showSelectedLabel}
         selectedSize={selectedSize}
@@ -122,6 +149,7 @@ const Banner = () => {
         fullWidth={fullWidth}
         disabled={disabled} */
                 />
+                <p className="text-red-500 text-sm">{error.destinationCountryError}</p>
               </div>
 
               <button
@@ -149,7 +177,8 @@ const Banner = () => {
         />
       )}
     </section>
-  );
-};
+ 
+  )
+}
 
 export default Banner;

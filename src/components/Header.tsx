@@ -18,6 +18,8 @@ const Header = () => {
         router.push("/loginpage")
     }
 
+    
+
     useEffect(()=>{
         const handleResize = () => {
             console.log("hell",window.innerWidth)

@@ -12,57 +12,59 @@ const FlagsComponent = () => {
   };
   return (
     <>
-      <p className="text-4xl mt-8 font-montserrat text-DarkGray tracking-wide text-center mb-8 ">
-        {" "}
-        Traverse Dream Destination
-        {/* Traverse To Your Dream Destination */}
+      <div className="bg-FloralWhite">
+        <p className="text-4xl mt-8 font-greycliff text-CGBlue tracking-wide text-center mb-8 ">
+          {" "}
+          Traverse Dream Destination
+          {/* Traverse To Your Dream Destination */}
+        </p>
+        <div className="flex  flex-wrap gap-6 sm:justify-center md:justify-center ">
+          {countriesData.map((country, index) => (
+            <div
+              key={index}
+              className="relative flex w-[350px] flex-col rounded-xl bg-white bg-clip-border text-DarkGray shadow-xl p-2"
+            >
+              <div className="relative">
+                <Image
+                  className="rounded-t-xl"
+                  src={`/assets/flagsImages/${country.name}.png`}
+                  alt={country.name}
+                  width={750}
+                  height={300}
+                />
+              </div>
+              <div className="p-4">
+                <a href="#">
+                  <h5 className="text-2xl font-medium tracking-wider text-CGBlue">
+                    {country.name}
+                  </h5>
+                </a>
 
-      </p>
+                <div className="relative group">
+                  <button
+                    onClick={handleReadMore}
+                    className="inline-flex items-center text-sm font-medium text-center text- rounded-lg"
+                  >
+                    <span>
+                      <FaPlaneDeparture />
+                    </span>
+                    <span className="ml-2 text-[17px] tracking-wider text-Gray hover:text-Blue">
+                      apply visa
+                    </span>
+                  </button>
 
-      <div className="flex  flex-wrap gap-6 sm:justify-center md:justify-center ">
-        {countriesData.map((country, index) => (
-          <div
-            key={index}
-            className="relative flex w-[350px] flex-col rounded-xl bg-white bg-clip-border text-DarkGray shadow-xl p-2"
-          >
-            <div className="relative">
-              <Image
-                className="rounded-t-xl"
-                src={`/assets/flagsImages/${country.name}.png`}
-                alt={country.name}
-                width={750}
-                height={300}
-              />
-            </div>
-            <div className="p-4">
-              <a href="#">
-                <h5 className="text-2xl font-mediuum tracking-wider text-DarkGray">
-                  {country.name}
-                </h5>
-              </a>
-
-              <div className="relative group">
-                <button
-                  onClick={handleReadMore}
-                  className="inline-flex items-center text-sm font-medium text-center text-Blue rounded-lg"
-                >
-                  <FaPlaneDeparture />
-                  <span className="ml-2 text-[17px] tracking-wider text-Gray hover:text-Blue">
-                    apply visa
+                  {/* Tooltip */}
+                  <span className="absolute bottom-full w-fit left-1/2 transform -translate-x-1/2 mb-2 hidden px-2 py-1 text-[12px] text-white bg-DarkGray tracking-wide font-sans rounded-lg group-hover:block">
+                    Apply visa for {country.name}
                   </span>
-                </button>
-
-                {/* Tooltip */}
-                <span className="absolute bottom-full w-fit left-1/2 transform -translate-x-1/2 mb-2 hidden px-2 py-1 text-[12px] text-white bg-DarkGray tracking-wide font-sans rounded-lg group-hover:block">
-                  Apply visa for {country.name}
-                </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-        {showStepsModal && (
-          <StepsModal setShouldStartjourneyShow={setShouldShowStepsModal} />
-        )}
+          ))}
+          {showStepsModal && (
+            <StepsModal setShouldStartjourneyShow={setShouldShowStepsModal} />
+          )}
+        </div>
       </div>
     </>
   );

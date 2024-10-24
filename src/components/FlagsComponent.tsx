@@ -12,7 +12,7 @@ const FlagsComponent = () => {
   };
   return (
     <>
-      <p className="text-2xl mt-8 text-center mb-8">
+      <p className="text-2xl mt-8 text-center mb-8 ">
         {" "}
         Traverse To Your Dream Destination
       </p>
@@ -29,7 +29,7 @@ const FlagsComponent = () => {
                 src={`/assets/flagsImages/${country.name}.png`}
                 alt={country.name}
                 width={750}
-                height={250}
+                height={300}
               />
             </div>
             <div className="p-4">
@@ -45,8 +45,8 @@ const FlagsComponent = () => {
                   className="inline-flex items-center text-sm font-medium text-center text-DarkGray rounded-lg"
                 >
                   <FaPlaneDeparture />
-                  <span className="ml-2 text-[16px] text-DarkGray">
-                    Apply Visa
+                  <span className="ml-2 text-[16px] tracking-wider text-Gray">
+                    apply visa
                   </span>
                 </button>
 

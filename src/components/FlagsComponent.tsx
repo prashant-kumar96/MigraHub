@@ -12,12 +12,14 @@ const FlagsComponent = () => {
   };
   return (
     <>
-      <p className="text-4xl mt-8 font-sans text-DarkGray text-center mb-8 ">
+      <p className="text-4xl mt-8 font-montserrat text-DarkGray tracking-wide text-center mb-8 ">
         {" "}
-        Traverse To Your Dream Destination
+        Traverse Dream Destination
+        {/* Traverse To Your Dream Destination */}
+
       </p>
 
-      <div className="flex  flex-wrap gap-6 ">
+      <div className="flex  flex-wrap gap-6 sm:justify-center md:justify-center ">
         {countriesData.map((country, index) => (
           <div
             key={index}
@@ -42,16 +44,16 @@ const FlagsComponent = () => {
               <div className="relative group">
                 <button
                   onClick={handleReadMore}
-                  className="inline-flex items-center text-sm font-medium text-center text-DarkGray rounded-lg"
+                  className="inline-flex items-center text-sm font-medium text-center text-Blue rounded-lg"
                 >
                   <FaPlaneDeparture />
-                  <span className="ml-2 text-[16px] tracking-wider text-Gray">
+                  <span className="ml-2 text-[17px] tracking-wider text-Gray hover:text-Blue">
                     apply visa
                   </span>
                 </button>
 
                 {/* Tooltip */}
-                <span className="absolute bottom-full w-fit left-1/2 transform -translate-x-1/2 mb-2 hidden px-2 py-1 text-[12px] text-white bg-black rounded-lg group-hover:block">
+                <span className="absolute bottom-full w-fit left-1/2 transform -translate-x-1/2 mb-2 hidden px-2 py-1 text-[12px] text-white bg-DarkGray tracking-wide font-sans rounded-lg group-hover:block">
                   Apply visa for {country.name}
                 </span>
               </div>

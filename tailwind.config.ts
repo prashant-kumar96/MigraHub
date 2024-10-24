@@ -14,7 +14,11 @@ const config: Config = {
         Gray: "#6b7280",
         DarkBlue: "#172554",
         LightBlue: "#bae6fd",
-        Blue: "#38bdf8"
+        Blue: "#38bdf8",
+        IndigoDye: "#2C415A"
+      },
+      fontFamily: {
+        montserrat: ['Montserrat', 'sans-serif'],
       },
     },
   },

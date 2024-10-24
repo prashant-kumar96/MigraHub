@@ -1,4 +1,4 @@
-import Banner from "@/components/Banner";
+import Banner from "@/components/TravelPlan";
 import BeforeLoginLayout from "@/components/BeforeLoginLayout";
 import FlagsComponent from "@/components/FlagsComponent";
 import React from "react";

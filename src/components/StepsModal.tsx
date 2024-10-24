@@ -226,7 +226,7 @@ const StepsModal: React.FC<Props> = ({
                   />
                 </div>
 
-                <div className="bg-gray-600 m-4">
+                {/* <div className="bg-gray-600 m-4">
                   {showRiskDecreased && (
                     <div className="p-4 md:p-5 space-y-4">
                       <Checkbox
@@ -238,7 +238,7 @@ const StepsModal: React.FC<Props> = ({
                       <p className="text-sm">{ModalData[step].secondLine}</p>
                     </div>
                   )}
-                </div>
+                </div> */}
               </>
             )}
 
@@ -259,7 +259,7 @@ const StepsModal: React.FC<Props> = ({
                       checked={data.areYouApplyingFromIndia}
                     />
                   </div>
-                  {data.areYouApplyingFromIndia && (
+                  {/* {data.areYouApplyingFromIndia && (
                     <div className="p-4 md:p-5 space-y-4 bg-gray-600">
                       <Checkbox
                         text="Risk Decreased"
@@ -270,7 +270,7 @@ const StepsModal: React.FC<Props> = ({
 
                       <p className="text-sm">{ModalData[step].secondLine}</p>
                     </div>
-                  )}
+                  )} */}
                 </div>
 
                 <div
@@ -296,10 +296,10 @@ const StepsModal: React.FC<Props> = ({
                       </h2>
 
                       <ReactFlagsSelect
-                        selected={citizenshipCountry}
+                        selected={data.handleSelectFromWhichCountry}
                         onSelect={handleSelectFromWhichCountry}
                         className="bg-white text-black"
-                        countries={countriesCodes}
+                        countries={countriesCodes.filter(c=>c!==citizenshipCountry)}
                         searchable
                         /*showSelectedLabel={showSelectedLabel}
         selectedSize={selectedSize}
@@ -312,7 +312,7 @@ const StepsModal: React.FC<Props> = ({
         fullWidth={fullWidth}
         disabled={disabled} */
                       />
-                      <div className="p-4 md:p-5 space-y-4 bg-gray-600">
+                      {/* <div className="p-4 md:p-5 space-y-4 bg-gray-600">
                         <Checkbox
                           text="Risk Increased"
                           textColor="white"
@@ -326,7 +326,7 @@ const StepsModal: React.FC<Props> = ({
                         <p className="text-sm">
                           {ModalData[step].secondLineForNo}
                         </p>
-                      </div>
+                      </div> */}
                     </>
                   )}
                 </div>
@@ -335,7 +335,11 @@ const StepsModal: React.FC<Props> = ({
 
             {step === 2 && (
               <>
-                <div className={`m-4`}>
+                <div      className={`${
+                    data.haveSpouseOrProperty
+                      ? "border-2 border-red-400"
+                      : ""
+                  } m-4`}>
                   <div className="p-2 px-5 space-y-4 border-b-2 py-4 bg-red-100">
                     <Radio
                       text="Yes"
@@ -345,7 +349,7 @@ const StepsModal: React.FC<Props> = ({
                       checked={data.haveSpouseOrProperty}
                     />
                   </div>
-                  {data.haveSpouseOrProperty && (
+                  {/* {data.haveSpouseOrProperty && (
                     <div className="p-4 md:p-5 space-y-4 bg-gray-600">
                       <Checkbox
                         text="Risk Decreased"
@@ -354,12 +358,12 @@ const StepsModal: React.FC<Props> = ({
                       />
                       <p className="text-sm"> {ModalData[step].lineForYes}</p>
                     </div>
-                  )}
+                  )} */}
                 </div>
 
                 <div
                   className={`${
-                    !data.areYouApplyingFromIndia
+                    !data.haveSpouseOrProperty
                       ? "border-2 border-red-400"
                       : ""
                   } m-4`}
@@ -373,7 +377,7 @@ const StepsModal: React.FC<Props> = ({
                       checked={!data.haveSpouseOrProperty}
                     />
                   </div>
-                  {!data.haveSpouseOrProperty && (
+                  {/* {!data.haveSpouseOrProperty && (
                     <>
                       <div className="p-4 md:p-5 space-y-4 bg-gray-600">
                         <Checkbox
@@ -390,13 +394,17 @@ const StepsModal: React.FC<Props> = ({
                         </p>
                       </div>
                     </>
-                  )}
+                  )} */}
                 </div>
               </>
             )}
             {step === 3 && (
               <>
-                <div className={`m-4`}>
+                <div className={`${
+                    data.travelledInternationallyAndReturnedHome
+                      ? "border-2 border-red-400"
+                      : ""
+                  } m-4`}>
                   <div className="p-2 px-5 space-y-4 border-b-2 py-4 bg-red-100">
                     <Radio
                       text="Yes"
@@ -408,7 +416,7 @@ const StepsModal: React.FC<Props> = ({
                       checked={data.travelledInternationallyAndReturnedHome}
                     />
                   </div>
-                  {data.travelledInternationallyAndReturnedHome && (
+                  {/* {data.travelledInternationallyAndReturnedHome && (
                     <div className="p-4 md:p-5 space-y-4 bg-gray-600">
                       <Checkbox
                         text="Risk Decreased"
@@ -417,7 +425,7 @@ const StepsModal: React.FC<Props> = ({
                       />
                       <p className="text-sm"> {ModalData[step].lineForYes}</p>
                     </div>
-                  )}
+                  )} */}
                 </div>
 
                 <div
@@ -438,7 +446,7 @@ const StepsModal: React.FC<Props> = ({
                       checked={!data.travelledInternationallyAndReturnedHome}
                     />
                   </div>
-                  {!data.travelledInternationallyAndReturnedHome && (
+                  {/* {!data.travelledInternationallyAndReturnedHome && (
                     <>
                       <div className="p-4 md:p-5 space-y-4 bg-gray-600">
                         <Checkbox
@@ -457,14 +465,16 @@ const StepsModal: React.FC<Props> = ({
                         </p>
                       </div>
                     </>
-                  )}
+                  )} */}
                 </div>
               </>
             )}
 
             {step === 4 && (
               <>
-                <div className={`m-4`}>
+                <div  className={`${
+                    data.deniedVisaToUs ? "border-2 border-red-400" : ""
+                  } m-4`}>
                   <div className="p-2 px-5 space-y-4 border-b-2 py-4 bg-red-100">
                     <Radio
                       text="Yes"
@@ -474,7 +484,7 @@ const StepsModal: React.FC<Props> = ({
                       checked={data.deniedVisaToUs}
                     />
                   </div>
-                  {data.deniedVisaToUs && (
+                  {/* {data.deniedVisaToUs && (
                     <div className="p-4 md:p-5 space-y-4 bg-gray-600">
                       <Checkbox
                         text="Risk Decreased"
@@ -489,7 +499,7 @@ const StepsModal: React.FC<Props> = ({
                         {ModalData[step].secondlineForYes}
                       </p>
                     </div>
-                  )}
+                  )} */}
                 </div>
 
                 <div
@@ -506,7 +516,7 @@ const StepsModal: React.FC<Props> = ({
                       checked={!data.deniedVisaToUs}
                     />
                   </div>
-                  {!data.deniedVisaToUs && (
+                  {/* {!data.deniedVisaToUs && (
                     <>
                       <div className="p-4 md:p-5 space-y-4 bg-gray-600">
                         <Checkbox
@@ -518,7 +528,7 @@ const StepsModal: React.FC<Props> = ({
                         <p className="text-sm">{ModalData[step].lineForNo}</p>
                       </div>
                     </>
-                  )}
+                  )} */}
                 </div>
               </>
             )}

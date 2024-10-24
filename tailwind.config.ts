@@ -12,9 +12,14 @@ const config: Config = {
         DarkGray: "#111827",
         LightGray: "#d1d5db",
         Gray: "#6b7280",
-        DarkBlue: "#172554",
+        CGBlue: "#04829E",
         LightBlue: "#bae6fd",
-        Blue: "#38bdf8"
+        Blue: "#38bdf8",
+        Indigo: "#2C415A",
+        FloralWhite: "FBF8F2"
+      },
+      fontFamily: {
+        greycliff: ["GreyCliff CF", "sans-serif"],
       },
     },
   },

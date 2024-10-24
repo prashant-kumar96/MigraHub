@@ -17,7 +17,7 @@ export default function GoogleLoginButton() {
     <>
       Not signed in <br />
       <button
-        onClick={() => signIn()}
+        onClick={() => signIn("google")}
         className="flex items-center justify-center w-full bg-red-500 text-white py-2 rounded-md mb-4 gap-2"
       >
         <FaGoogle />

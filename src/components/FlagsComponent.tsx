@@ -12,7 +12,7 @@ const FlagsComponent = () => {
   };
   return (
     <>
-      <p className="text-2xl mt-8 text-center mb-8 ">
+      <p className="text-4xl mt-8 font-sans text-DarkGray text-center mb-8 ">
         {" "}
         Traverse To Your Dream Destination
       </p>

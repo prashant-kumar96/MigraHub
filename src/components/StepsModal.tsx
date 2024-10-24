@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactFlagsSelect from "react-flags-select";
 import ProgressBar from "./ProgressBar";
 import { PiHeadsetFill } from "react-icons/pi";
-import { countriesCodes, ModalData } from "@/utils/modalData";
+import {  ModalData } from "@/utils/modalData";
 import Radio from "@/utils/Radio";
 import Checkbox from "@/utils/Checkbox";
 import { FaGoogle } from "react-icons/fa";
@@ -10,12 +10,14 @@ import GoogleProvider from "next-auth/providers/google";
 import { useSession, signIn, signOut } from "next-auth/react"
 import GoogleLoginButton from "./loginButton";
 import { useRouter } from "next/router";
+import countryList from "react-select-country-list";
 
 interface Props {
   setShouldStartjourneyShow: React.Dispatch<React.SetStateAction<boolean>>;
   citizenshipCountry: string;
   setCitizenshipCountry: React.Dispatch<React.SetStateAction<string>>;
   onSelectCitizenShipCountry: (code: string) => void;
+  countryCodes: []
 }
 
 const StepsModal: React.FC<Props> = ({
@@ -23,6 +25,7 @@ const StepsModal: React.FC<Props> = ({
   setShouldStartjourneyShow,
   setCitizenshipCountry,
   onSelectCitizenShipCountry,
+  countryCodes
 }) => {
   const handleCloseModal = () => {
     setShouldStartjourneyShow(false);
@@ -121,6 +124,8 @@ const StepsModal: React.FC<Props> = ({
   };
 
   const showFullCountryName = (code:string) => {
+    let country :{ label:string, value:string} = countryList().getData().find(country => country.value == code )
+    return country.label;
     let fullCountryName = "";
     switch (code) {
       case "IN":
@@ -211,7 +216,7 @@ const StepsModal: React.FC<Props> = ({
                     selected={citizenshipCountry}
                     onSelect={handleSelectCitizenShipCountry}
                     className="bg-white text-black"
-                    countries={countriesCodes}
+                    countries={countryCodes}
                     searchable
                     /*showSelectedLabel={showSelectedLabel}
         selectedSize={selectedSize}
@@ -299,7 +304,7 @@ const StepsModal: React.FC<Props> = ({
                         selected={data.handleSelectFromWhichCountry}
                         onSelect={handleSelectFromWhichCountry}
                         className="bg-white text-black"
-                        countries={countriesCodes.filter(c=>c!==citizenshipCountry)}
+                        countries={countryCodes.filter(c=>c!==citizenshipCountry)}
                         searchable
                         /*showSelectedLabel={showSelectedLabel}
         selectedSize={selectedSize}

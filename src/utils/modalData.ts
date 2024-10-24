@@ -52,5 +52,4 @@ const ModalData = [
   },
 ];
 
-const countriesCodes = ["IN", "fi", "GB", "IE", "IT", "NL", "SE", "CA","US"]
-export { ModalData , countriesCodes };
+export { ModalData };

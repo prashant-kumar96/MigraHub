@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import ReactFlagsSelect from "react-flags-select";
 import StepsModal from "./StepsModal";
-import { countriesCodes } from "@/utils/modalData";
+// import { countriesCodes } from "@/utils/modalData";
+import countryList from "react-select-country-list";
 
 const Banner = () => {
   const [citizenshipCountry, setCitizenshipCountry] = useState("");
   const [destinationCountry, setDestinationCountry] = useState("");
   const [shouldStartjourneyShow, setShouldStartjourneyShow] = useState(false);
-  const [citizenshipCountryCodes, setCitizenshipCountryCodes] = useState(countriesCodes);
-  const [destinationCountryCodes, setDestinationCountryCodes] = useState(countriesCodes);
+  const countryCodes = countryList().getData().map(country => country.value)
+  const [citizenshipCountryCodes, setCitizenshipCountryCodes] = useState(countryCodes);
+  const [destinationCountryCodes, setDestinationCountryCodes] = useState(countryCodes);
   const [error, setError] = useState({
     citizenshipCountryError:"",
     destinationCountryError:"",
@@ -22,7 +24,7 @@ const Banner = () => {
       citizenshipCountryError:""
     }))
     setCitizenshipCountry(code);
-    let temp = [...countriesCodes]
+    let temp = [...countryCodes]
     const index = destinationCountryCodes.indexOf(code);
     if(index>-1){
       temp.splice(index,1)
@@ -35,7 +37,7 @@ const Banner = () => {
       destinationCountryError:""
     }))
     setDestinationCountry(code);
-    let temp = [...countriesCodes]
+    let temp = [...countryCodes]
     const index = citizenshipCountryCodes.indexOf(code);
     if(index>-1){
       temp.splice(index,1)
@@ -174,6 +176,7 @@ const Banner = () => {
           citizenshipCountry={citizenshipCountry}
           setCitizenshipCountry={setCitizenshipCountry}
           onSelectCitizenShipCountry={onSelectCitizenShipCountry}
+          countryCodes={countryCodes}
         />
       )}
     </section>

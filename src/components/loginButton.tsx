@@ -9,19 +9,18 @@ export default function GoogleLoginButton() {
     return (
       <>
         Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        <button className="flex items-center justify-center w-1/2 text-red-600 py-4 mb-4 gap-2 px-6 shadow-md border border-gray-200" onClick={() => signOut()}>Sign out</button>
       </>
     );
   }
   return (
     <>
-      Not signed in <br />
       <button
         onClick={() => signIn("google")}
-        className="flex items-center justify-center w-full bg-red-500 text-white py-2 rounded-md mb-4 gap-2"
+        className="flex items-center justify-center w-1/2 text-red-600 py-4 mb-4 gap-2 px-6 shadow-md border border-gray-200"
       >
-        <FaGoogle />
-        Sign in
+        <FaGoogle className="text-red-600"/>
+        Google
       </button>
     </>
   );

@@ -1,9 +1,6 @@
 const ModalData = [
   {
     question: "Where is your passport from?",
-    firstLine:
-      "Citizens of India have a denial rate of 11%, which is lower than average",
-    secondLine: "Source: U.S. Department of State denial rate data",
   },
   {
     question: "Are you applying from",

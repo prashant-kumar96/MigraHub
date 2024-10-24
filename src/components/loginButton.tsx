@@ -5,7 +5,7 @@ export default function GoogleLoginButton() {
   const { data: session } = useSession();
   const router = useRouter();
   if (session) {
-    router.push("/dashboard");
+    // router.push("/dashboard");
     return (
       <>
         Signed in as {session.user.email} <br />
